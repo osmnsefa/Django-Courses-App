@@ -1,0 +1,66 @@
+<!--navbar-->
+<nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+    <div class="container">
+        <a href="{% url 'pages_index' %}" class="navbar-brand">COURSE APP</a>
+
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
+            <span class="navbar-toggler-icon"></span> <!--Sayfayı daralttığımızda gelen 3 çizgi şeklindeki button-->
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav me-auto">
+
+            <li class="nav-item">
+                <a href="{% url 'index' %}" class="nav-link">Kurslar</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'about' %}" class="nav-link">Hakkımızda</a>
+            </li>
+            {% if user.is_superuser %}
+                <li class="nav-item">
+                    <a href="{% url 'create-course' %}" class="nav-link">Admin Kurs Ekle</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'course_list' %}" class="nav-link">Admin Kurslar</a>
+                </li>
+            {% endif %}
+            
+            
+            </ul>
+            <ul class="navbar-nav me-1">
+
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Hoş Geldiniz {{user.username}}</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'change_password' %}" class="nav-link">Parola Güncelle</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'user_logout' %}" class="nav-link">Çıkış Yap</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a href="{% url 'user_login' %}" class="nav-link">Giriş Yap</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'user_register' %}" class="nav-link">Kayıt Ekle</a>
+                </li>
+                {% endif %}
+
+                
+                
+            
+            </ul>
+            <form action="{% url 'search' %}" class="d-flex">
+                <input type="text" class="form-control me-1" name="q" placeholder="Anahtar Kelime">
+                <button class="btn btn-secondary" type="submit">Arama</button>
+
+            </form>
+        </div>
+    </div>
+
+
+</nav>

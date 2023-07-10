@@ -8,10 +8,15 @@ from . import views
 
 
 urlpatterns = [
-    path('list', views.courses),
-    path('<kurs_adi>', views.details),# dinamik url yapısı kullandık.Dinamik url'de her zaman üstten kontrole başlar.
-    path('kategori/<int:category_id>', views.getCoursesByCategoryId),# int olanı üste yadık çünkü bir sayıyı str olarak düşünüp name'i çalıştırabilir.
-    path('kategori/<str:category_name>', views.getCoursesByCategory,name='courses_by_category'),
+    path('', views.index,name="index"),  #alttaki kodda slug veri tipinde slug adında bir değişken belirledik.
+    path('search', views.search, name="search"),
+    path('create-course', views.create_course, name="create-course"),
+    path('course-list',views.course_list,name="course_list"),
+    path('course-edit/<int:id>',views.course_edit,name="course_edit"),
+    path('upload',views.upload,name="upload_image"),
+    path('course-delete/<int:id>',views.course_delete,name="course_delete"),
+    path('<slug:slug>', views.details,name="course_details"),# dinamik url yapısı kullandık.Dinamik url'de her zaman üstten kontrole başlar.
+    path('kategori/<slug:slug>', views.getCoursesByCategory,name='courses_by_category'),
     
     
 ]

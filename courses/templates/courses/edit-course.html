@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block css_files %}
+        <link rel="stylesheet" href="{% static 'courses/css/style.css' %}">
+    {% endblock css_files %}
+
+{% block title %}
+    Edit Course
+    {% endblock title %}
+{% block content %}
+    
+    
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-6">
+                <form method="POST" novalidate
+                enctype="multipart/form-data"><!--novalidate yaparsak kendi djangonun değil kendi mesajlarımızı yazdırabiliriz.-->
+                    {% csrf_token %}
+
+                    {% include 'includes/_form.html' %}
+
+                    <button type="submit" class="btn btn-primary"> Kaydet </button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block js_files %}
+        <script src="{% static 'courses/js/script.js' %}"></script>
+    {% endblock js_files %}

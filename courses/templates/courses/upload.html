@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block css_files %}
+        <link rel="stylesheet" href="{% static 'courses/css/style.css' %}">
+    {% endblock css_files %}
+
+{% block title %}
+    
+    {% endblock title %}
+{% block content %}
+    
+    
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-12">
+                <form action="{% url 'upload_image' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        <div class="input-group">
+                            {{form}}
+                            <button class="btn btn-outline-secondary" type="submit">Yükle</button>
+                        </div>
+                      
+                </form>
+            </div>
+            
+        </div>
+    </div>
+{% endblock content %}
+{% block js_files %}
+        <script src="{% static 'courses/js/script.js' %}"></script>
+    {% endblock js_files %}

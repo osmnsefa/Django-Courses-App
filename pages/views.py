@@ -1,11 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from courses.models import Slider
+
 # Create your views here.
 
-def home(request):
-    return HttpResponse("Anasayfa")
+def index(request):
+    sliders=Slider.objects.filter(is_active=True)
+    
+    return render(request,"pages/index.html",{
+        
+        'sliders':sliders
+    })
 def about(request):
-    return HttpResponse("Hakkımızda")
+    return render(request,"pages/about.html")
 def contact(request):
-    return HttpResponse("İletişim")
+    return render(request,"pages/contact.html")
